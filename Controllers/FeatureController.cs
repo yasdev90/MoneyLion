@@ -31,7 +31,7 @@ namespace moneyLionAssignment.Controllers
                             result = features.Where(feature => feature.FeatureName == featureName && feature.Email == email)
                                     .Select(f => f.IsEnabled);
                         }
-                        
+
                         return Ok(result);
                     }
                 }
@@ -45,9 +45,34 @@ namespace moneyLionAssignment.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post()
+        public IActionResult Post([FromBody] Feature feature)
         {
-            return Ok();
+            try
+            {
+                var data = string.Empty;
+                if (!System.IO.File.Exists(_dataFilePath))
+                {
+                    using FileStream fileStream = System.IO.File.Create(_dataFilePath);
+                }
+                using (StreamReader reader = new StreamReader(_dataFilePath))
+                {
+                    var storedData = reader.ReadToEnd();
+                    data = string.IsNullOrEmpty(storedData) ? "[]" : storedData;
+                    reader.Close();
+                }
+               
+                    var features = JsonConvert.DeserializeObject<List<Feature>>(data);
+                    features.Add(feature);
+                    var convertedJson = JsonConvert.SerializeObject(features, Formatting.Indented);
+                    System.IO.File.WriteAllText(_dataFilePath, convertedJson);
+
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+                return StatusCode(304);
+            }
         }
     }
 
