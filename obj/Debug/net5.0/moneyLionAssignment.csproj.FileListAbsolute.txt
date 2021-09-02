@@ -28,3 +28,4 @@ C:\Users\Yasser\Desktop\moneyLionAssignment\obj\Debug\net5.0\moneyLionAssignment
 C:\Users\Yasser\Desktop\moneyLionAssignment\obj\Debug\net5.0\ref\moneyLionAssignment.dll
 C:\Users\Yasser\Desktop\moneyLionAssignment\obj\Debug\net5.0\moneyLionAssignment.pdb
 C:\Users\Yasser\Desktop\moneyLionAssignment\obj\Debug\net5.0\moneyLionAssignment.genruntimeconfig.cache
+C:\Users\Yasser\Desktop\moneyLionAssignment\bin\Debug\net5.0\data.json

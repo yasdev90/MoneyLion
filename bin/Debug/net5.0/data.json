@@ -1,0 +1,17 @@
+[
+  {
+    "featureName": "1",
+    "email": "qa@11.com",
+    "enable": true
+  },
+  {
+    "featureName": "2",
+    "email": "qa@122.com",
+    "enable": false
+  },
+  {
+    "featureName": "3",
+    "email": "qa@3.com",
+    "enable": true
+  }
+]

@@ -21,16 +21,14 @@ namespace moneyLionAssignment.Controllers
             {
                 if (!string.IsNullOrEmpty(featureName) && !string.IsNullOrEmpty(email))
                 {
-                    var result = new object();
                     if (System.IO.File.Exists(_dataFilePath))
                     {
-                        using (StreamReader reader = new StreamReader(_dataFilePath))
-                        {
-                            var data = reader.ReadToEnd();
-                            var features = JsonConvert.DeserializeObject<List<Feature>>(data);
-                            result = features.Where(feature => feature.FeatureName == featureName && feature.Email == email)
-                                    .Select(f => new FeatureResult{ CanAccess = f.IsEnabled});
-                        }
+                        var storedFeatures = GetStoredFeaturesInDataFile();
+
+                        // Find a Feature with name and email equal to this method parametes.
+                        var matchedFeature = storedFeatures.FirstOrDefault(feature => feature.FeatureName == featureName && feature.Email == email);
+                        Console.WriteLine(matchedFeature);
+                        var result = ToFeatureAccessibilityObject(matchedFeature);
 
                         return Ok(result);
                     }
@@ -41,38 +39,70 @@ namespace moneyLionAssignment.Controllers
                 Console.WriteLine("Exception: " + ex.Message);
             }
 
-            return NotFound();
+            return Ok();
         }
 
+
         [HttpPost]
-        public IActionResult Post([FromBody] Feature feature)
+        public IActionResult Post([FromBody]Feature feature)
         {
             try
             {
-                var data = string.Empty;
-                if (!System.IO.File.Exists(_dataFilePath))
-                {
-                    using FileStream fileStream = System.IO.File.Create(_dataFilePath);
-                }
-                using (StreamReader reader = new StreamReader(_dataFilePath))
-                {
-                    var storedData = reader.ReadToEnd();
-                    data = string.IsNullOrEmpty(storedData) ? "[]" : storedData;
-                    reader.Close();
-                }
-               
-                    var features = JsonConvert.DeserializeObject<List<Feature>>(data);
-                    features.Add(feature);
-                    var convertedJson = JsonConvert.SerializeObject(features, Formatting.Indented);
-                    System.IO.File.WriteAllText(_dataFilePath, convertedJson);
+                CreateDataFileIfNotExisted();
+                var storedFeatures = GetStoredFeaturesInDataFile();
+                
+                // Add the passed feature to data file.
+                storedFeatures.Add(feature);
+
+                // Convert all stored features to json forman.
+                var convertedJson = JsonConvert.SerializeObject(storedFeatures, Formatting.Indented);
+
+                // Write stored data in json format to data file
+                System.IO.File.WriteAllText(_dataFilePath, convertedJson);
 
                 return Ok();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine("Exception: " + e.Message);
-                return StatusCode(304);
+                return StatusCode(304, ex.Message);
             }
+        }
+
+        /// <summary>
+        /// Converts Feature to FeatureResult objct
+        /// </summary>
+        private FeatureResult ToFeatureAccessibilityObject(Feature matchedFeature)
+        {
+            return new FeatureResult
+            {
+                CanAccess = matchedFeature.IsEnabled
+            };
+        }
+
+        ///<summary>
+        /// Initialized an empty data file, if no data file found.
+        ///</summary>
+        private void CreateDataFileIfNotExisted()
+        {
+            if (!System.IO.File.Exists(_dataFilePath))
+            {
+                using FileStream fileStream = System.IO.File.Create(_dataFilePath);
+            }
+        }
+
+        /// <summary>
+        /// Returns features stored in data file as a list of features
+        /// </summary>
+        private IList<Feature> GetStoredFeaturesInDataFile()
+        {
+            var data = string.Empty;
+            using (StreamReader reader = new StreamReader(_dataFilePath))
+            {
+                var storedData = reader.ReadToEnd();
+                data = string.IsNullOrEmpty(storedData) ? "[]" : storedData;
+            }
+
+            return JsonConvert.DeserializeObject<List<Feature>>(data);
         }
     }
 
