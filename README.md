@@ -1,6 +1,7 @@
 # MoneyLion Assignment 
 This is my soluotion to the given assignment by MoneyLion.
-This assignment was written by me (Yasser) using C# as a programming language, VsCode as an IDE and .NET core as a framework to build it
+This assignment was written by me (Yasser) using C# as a programming language, VsCode as an IDE and .NET core as a framework to build it.
+
 To run this project and see the results, follow these steps:
 1. download or clone this project.
 2. navigate to where the source code is located.
