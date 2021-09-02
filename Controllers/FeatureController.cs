@@ -29,7 +29,7 @@ namespace moneyLionAssignment.Controllers
                             var data = reader.ReadToEnd();
                             var features = JsonConvert.DeserializeObject<List<Feature>>(data);
                             result = features.Where(feature => feature.FeatureName == featureName && feature.Email == email)
-                                    .Select(f => f.IsEnabled);
+                                    .Select(f => new FeatureResult{ CanAccess = f.IsEnabled});
                         }
 
                         return Ok(result);
