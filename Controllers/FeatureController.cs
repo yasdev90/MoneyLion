@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using moneyLionAssignment.Models;
-using Newtonsoft.Json;
 
 namespace moneyLionAssignment.Controllers
 {
@@ -27,7 +27,6 @@ namespace moneyLionAssignment.Controllers
 
                         // Find a Feature with name and email equal to this method parametes.
                         var matchedFeature = storedFeatures.FirstOrDefault(feature => feature.FeatureName == featureName && feature.Email == email);
-                        Console.WriteLine(matchedFeature);
                         var result = ToFeatureAccessibilityObject(matchedFeature);
 
                         return Ok(result);
@@ -55,7 +54,7 @@ namespace moneyLionAssignment.Controllers
                 storedFeatures.Add(feature);
 
                 // Convert all stored features to json forman.
-                var convertedJson = JsonConvert.SerializeObject(storedFeatures, Formatting.Indented);
+                var convertedJson = JsonSerializer.Serialize(storedFeatures);
 
                 // Write stored data in json format to data file
                 System.IO.File.WriteAllText(_dataFilePath, convertedJson);
@@ -102,7 +101,7 @@ namespace moneyLionAssignment.Controllers
                 data = string.IsNullOrEmpty(storedData) ? "[]" : storedData;
             }
 
-            return JsonConvert.DeserializeObject<List<Feature>>(data);
+            return JsonSerializer.Deserialize<List<Feature>>(data);
         }
     }
 

@@ -1,16 +1,17 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace moneyLionAssignment.Models
 {
     public class Feature
     {
-        [JsonProperty("featureName")]
+        [JsonPropertyName("featureName")]
         public string FeatureName { get; set; }
 
-        [JsonProperty("email")]
+        [JsonPropertyName("email")]
         public string Email { get; set; }
 
-        [JsonProperty("enable")]
+
+        [JsonPropertyName("enable")]
         public bool IsEnabled { get; set; }
     }
 }

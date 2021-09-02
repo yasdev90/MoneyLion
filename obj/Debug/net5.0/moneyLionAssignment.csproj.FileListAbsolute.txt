@@ -8,7 +8,6 @@ C:\Users\Yasser\Desktop\moneyLionAssignment\bin\Debug\net5.0\moneyLionAssignment
 C:\Users\Yasser\Desktop\moneyLionAssignment\bin\Debug\net5.0\ref\moneyLionAssignment.dll
 C:\Users\Yasser\Desktop\moneyLionAssignment\bin\Debug\net5.0\moneyLionAssignment.pdb
 C:\Users\Yasser\Desktop\moneyLionAssignment\bin\Debug\net5.0\Microsoft.OpenApi.dll
-C:\Users\Yasser\Desktop\moneyLionAssignment\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\Yasser\Desktop\moneyLionAssignment\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\Yasser\Desktop\moneyLionAssignment\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Yasser\Desktop\moneyLionAssignment\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll

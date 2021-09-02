@@ -1,10 +1,10 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace moneyLionAssignment.Models
 {
     public class FeatureResult
     {
-        [JsonProperty("canAccess")]
+        [JsonPropertyName("canAccess")]
         public bool CanAccess { get; set; }
     }
 }

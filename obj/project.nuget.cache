@@ -1,12 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "fhi6LFXhurL5Bri0BQc7WrLkVNyZhB1dcuwAaLZB6BMKtUVx5rwnWvCRnmtf/YkeO86V+xn7yHgWLLGrvhfdXw==",
+  "dgSpecHash": "mTfXjAXFwct9vQKKer9E04VsIaIavAbel0lLjrnLjIr9yuIdZrqc4kPdrZaf+wWbXM0ReH/W0hF+n3zEWY4pHg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Yasser\\Desktop\\moneyLionAssignment\\moneyLionAssignment.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Yasser\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Yasser\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
-    "C:\\Users\\Yasser\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Yasser\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "C:\\Users\\Yasser\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
     "C:\\Users\\Yasser\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
